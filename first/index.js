@@ -1,0 +1,71 @@
+const express = require('express');
+require('dotenv').config()
+const app = express()
+
+const port = process.env.PORT
+
+const githubData = {
+  "result": [
+    "repeat(1,2)",
+    {
+      "message": "Hello, firstName()! Your order number is: #int(1,100)",
+      "phoneNumber": "phoneNumber()",
+      "phoneVariation": "+90 int(300,399) int(100,999) int(10-99) int(10,99)",
+      "status": "enum(active, disabled)",
+      "name": {
+        "first": "firstName()",
+        "middle": "middleName()",
+        "last": "lastName()"
+      },
+      "username": "this.name.first-this.name.last",
+      "password": "password()",
+      "emails": [
+        "repeat(2)",
+        "email(gmail.com, example.com)"
+      ],
+      "location": {
+        "street": "street()",
+        "city": "city()",
+        "state": "state()",
+        "country": "country()",
+        "zip": "zipCode()",
+        "coordinates": {
+          "latitude": "latitude()",
+          "longitude": "longitude()"
+        }
+      },
+      "website": "url()",
+      "domain": "domainName()",
+      "job": {
+        "title": "jobTitle()",
+        "descriptor": "jobDescriptor()",
+        "area": "jobArea()",
+        "type": "jobType()",
+        "company": "companyName()"
+      },
+      "creditCard": {
+        "number": "creditCardNumber()",
+        "cvv": "creditCardCVV()",
+        "issuer": "creditCardIssuer()"
+      },
+      "uuid": "guid()",
+      "objectId": "objectId()"
+    }
+  ]
+}
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.get("/login", (req, res) => {
+    res.send("Login to my fullstack project")
+})
+
+app.get("/mygithub", (req, res) => {
+    res.json({githubData})
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
