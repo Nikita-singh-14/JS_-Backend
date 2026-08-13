@@ -35,7 +35,13 @@ const UserSchema = new Schema({
         type: String, // cloudinary url
         required: true
     },
+    avatarPublicId: {
+        type: String
+    },  
     coverImage: {
+        type: String
+    },
+    coverImagePublicId: {
         type: String
     },
     refreshToken: {
