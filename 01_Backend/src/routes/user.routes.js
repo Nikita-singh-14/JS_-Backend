@@ -35,12 +35,13 @@ router.route("/login").post(loginUser)
 router.route("/logout").post(jwtVerify, logoutUser)
 router.route("/refresh-token").post(refreshAccessToken)
 router.route("/change-password").post(jwtVerify, changePassword)
-router.route("current-user").get(jwtVerify, getCurrentUser)
-router.route("update-details").patch(jwtVerify, updateDetails)
+router.route("/current-user").get(jwtVerify, getCurrentUser)
+router.route("/update-details").patch(jwtVerify, updateDetails)
 
-router.route("avatar").patch(jwtVerify, upload.single("/avatar"), updateUserAvatar)
-router.route("cover-image").patch(jwtVerify, upload.single("/coverImage"), updateUserCoverImage)
+router.route("/avatar").patch(jwtVerify, upload.single("avatar"), updateUserAvatar)
+router.route("/cover-image").patch(jwtVerify, upload.single("coverImage"), updateUserCoverImage)
 
 router.route("/c/:username").get(jwtVerify, getUserChannelProfile)
-router.route("watch-history").get(jwtVerify, getWatchHistory)
+router.route("/watch-history").get(jwtVerify, getWatchHistory)
+
 export default router
