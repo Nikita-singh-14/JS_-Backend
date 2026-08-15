@@ -66,10 +66,62 @@ const getVideoById = asyncHandler(async(req, res) => {
     .json(new ApiResponse(200, video, "fechted video successfully"))
 })
 
-// const updateVideo = asyncHandler(async (req, res) => {
-//     const { videoId } = req.params
-//     //TODO: update video details like title, description, thumbnail
+const updateVideoInfo = asyncHandler(async(req, res) => {
+    
+    const { videoId } = req.params
 
+    if(!videoId){
+        throw new  ApiError(400, "video Id is required")
+    }
+
+    const {title, description} = req.body
+    const thumbnailLocalPath = req.file?.path
+
+    const updateData = {}
+
+    if(title !== undefined){
+        updateData.title = title
+    }
+    if(description !== undefined){
+        updateData.description = description
+    }
+    if(thumbnailLocalPath){
+        const thumbnail = await uploadOnCloudinary(thumbnailLocalPath)
+        if(!thumbnail.url){
+            throw new ApiError(400, "Error while uploading on thumbnail")
+        }
+        updateData.thumbnail = thumbnail.url
+    }
+
+    if(Object.keys(updateData).length === 0 ){
+        throw new ApiError(400, "At least one feild is required to update")
+    }
+
+
+    const video = await Video.findByIdAndUpdate(
+        videoId,
+        {
+            $set: updateData
+        },
+        {new: true}
+    )
+
+    if(!video){
+        throw new ApiError(500, "video not found")
+    }
+
+    return res.status(200)
+    .json(new ApiResponse(200, video, "video updated successfully"))
+})
+
+// const deleteVideo = asyncHandler(async (req, res) => {
+//     const { videoId } = req.params
+//     //TODO: delete video
 // })
 
-export { videoUpload, getVideoById}
+// const togglePublishStatus = asyncHandler(async (req, res) => {
+//     const { videoId } = req.params
+// })
+
+
+export { videoUpload, getVideoById, updateVideoInfo}
