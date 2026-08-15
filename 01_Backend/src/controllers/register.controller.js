@@ -63,9 +63,9 @@ const registerUser = asyncHandler(async(req, res) => {
     const avatar = await uploadOnCloudinary(avatarLocalPath);
     const coverImage = coverImageLocalPath ? await uploadOnCloudinary(coverImageLocalPath) : null;
    
-    if (!avatar) {
-    throw new ApiError(400, "Avatar upload failed");
-   }
+//     if (!avatar) {
+//     throw new ApiError(400, "Avatar upload failed");
+//    }
     
     const user = await User.create({
         fullName,
@@ -122,7 +122,7 @@ const loginUser = asyncHandler(async(req, res) => {
     const isPasswrodValide = await user.isPasswordCorrect(password);
 
     if(!isPasswrodValide){
-        throw ApiError(401, "Invalide user credentials")
+        throw new ApiError(401, "Invalide user credentials")
     }
 
     const {accessToken, refreshToken} = await generateRefreshAndAccessTokens(user._id)
