@@ -28,8 +28,7 @@ const videoUpload = asyncHandler(async (req, res) => {
     const thumbnail = thumbnailLocalPath ? await uploadOnCloudinary(thumbnailLocalPath) : '';
     const videofile = await uploadOnCloudinary(videoLocalPath);
 
-    // console.log(thumbnail?.url)
-    // console.log(videofile.url)
+    
 
     const video = await Video.create({
         title,
@@ -42,7 +41,7 @@ const videoUpload = asyncHandler(async (req, res) => {
         owner: req.user._id
     });
 
-    console.log(video)
+    // console.log(video)
 
     return res
         .status(200)
@@ -120,7 +119,14 @@ const deleteVideo = asyncHandler(async (req, res) => {
     if (!mongoose.isValidObjectId(videoId)) {
         throw new ApiError(400, "please enter valid video id")
     }
+
+    // const videoIdFound = Video.findById(videoId)
+    // if (!videoIdFound) {
+    //     throw new ApiError(400, "please enter valid video id")
+    // }
+
     const video = await Video.findByIdAndDelete(videoId)
+    // const video = await Video.findByIdAndDelete(videoIdFound)
 
     if (!video) {
         throw new ApiError(400, "video not found")
