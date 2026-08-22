@@ -22,7 +22,7 @@ const getVideoComment = asyncHandler(async(req, res) => {
         )
     }
 
-    const videoExists = await Video.findById(videoId)
+    const videoExists = await Video.exists({_id: videoId})
     if (!videoExists) {
         throw new ApiError(
             404,
