@@ -7,3 +7,5 @@ const getChannelStats = asyncHandler(async (req, res) => {
 const getChannelVideos = asyncHandler(async (req, res) => {
     // TODO: Get all the videos uploaded by the channel
 })
+
+export {getChannelStats, getChannelVideos}
