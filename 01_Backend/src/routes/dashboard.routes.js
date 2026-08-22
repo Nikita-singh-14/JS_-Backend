@@ -4,7 +4,8 @@ import { jwtVerify } from "../middleware/auth.middleware";
 
 const router = Router()
 
-router.route("/videos").get(jwtVerify, getChannelVideos)
-router.route("/stats").get(jwtVerify, getChannelStats)
+router.route("/channel/:channelId/videos").get(jwtVerify, getChannelVideos)
+router.route("/channel/:channelId/stats").get(jwtVerify, getChannelStats)
+
 
 export default router
