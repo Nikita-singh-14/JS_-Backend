@@ -1,19 +1,29 @@
 import mongoose from "mongoose";
-import { Playlist } from "../models/playlist.model";
-import { Video } from "../models/video.model";
-import { ApiError } from "../utils/ApiError";
-import { ApiResponse } from "../utils/ApiResponse";
-import { asyncHandler } from "../utils/asyncHandler";
+import { Playlist } from "../models/playlist.model.js";
+import { Video } from "../models/video.model.js";
+import { ApiError } from "../utils/ApiError.js";
+import { ApiResponse } from "../utils/ApiResponse.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 
 const createPlaylist = asyncHandler(async(req, res) => {
     const {name, description} = req.body
-    if(!name || !description){
-        throw new ApiError(400, "Name and description are required to create a playlist")
+    if (!name || !name.trim()) {
+        throw new ApiError(
+            400,
+            "Playlist name is required"
+        )
+    }
+
+    if (!description || !description.trim()) {
+        throw new ApiError(
+            400,
+            "Playlist description is required"
+        )
     }
 
     const playlist = await Playlist.create({
-        title: name,
-        description,
+        name: name.trim(),
+        description: description.trim(),
         owner: req.user?._id,
         videos: []
     })
@@ -169,41 +179,55 @@ const deletePlaylist = asyncHandler(async (req, res) => {
 })
 
 const updatePlaylist = asyncHandler(async (req, res) => {
-    const {playlistId} = req.params
-    const {name, description} = req.body
+    const { playlistId } = req.params
+    const { name, description } = req.body
 
-    if(!playlistId){
-        throw new ApiError(400, "playlistId is required")
+    if (!playlistId) {
+        throw new ApiError(
+            400,
+            "Playlist ID is required"
+        )
     }
+
     if (!mongoose.isValidObjectId(playlistId)) {
-        throw new ApiError(400, "Invalid playlistId")
+        throw new ApiError(
+            400,
+            "Invalid playlist ID"
+        )
     }
 
-    if(name === undefined || description === undefined){
-        throw new ApiError(400, "Name and description are required to create a playlist")
+    if (name === undefined && description === undefined) {
+        throw new ApiError(
+            400,
+            "At least one field is required to update the playlist"
+        )
     }
+
     const updateData = {}
-    if(name){
+
+    if (name !== undefined) {
         if (!name.trim()) {
             throw new ApiError(
                 400,
                 "Playlist name cannot be empty"
             )
         }
-        updateData.title = name
+
+        updateData.name = name.trim()
     }
-    if(description){
+
+    if (description !== undefined) {
         if (!description.trim()) {
             throw new ApiError(
                 400,
                 "Playlist description cannot be empty"
             )
         }
-        updateData.description = description
-        
+
+        updateData.description = description.trim()
     }
 
-    const playlist = await Playlist.findByIdAndUpdate(
+    const playlist = await Playlist.findOneAndUpdate(
         {
             _id: playlistId,
             owner: req.user?._id
@@ -216,12 +240,20 @@ const updatePlaylist = asyncHandler(async (req, res) => {
         }
     )
 
-    if(!playlist){
-        throw new ApiError(500, "something went wrong while updating the playlist")
+    if (!playlist) {
+        throw new ApiError(
+            404,
+            "Playlist does not exist or you are not authorized to update it"
+        )
     }
 
-    return res.status(200)
-    .json(new ApiResponse(200, playlist, "update playlist successfully"))
+    return res.status(200).json(
+        new ApiResponse(
+            200,
+            playlist,
+            "Playlist updated successfully"
+        )
+    )
 })
 
 export {

@@ -6,6 +6,13 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 
 const getUserTweets = asyncHandler(async (req, res) => {
     const { userId } = req.params
+    if (!userId) {
+        throw new ApiError(400, "User ID is required")
+    }
+
+    if (!mongoose.isValidObjectId(userId)) {
+        throw new ApiError(400, "Invalid user ID")
+    }
     const userTweets = await Tweet.find({
         owner: userId
     }).sort({ createdAt: -1 })

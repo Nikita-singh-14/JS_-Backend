@@ -139,7 +139,7 @@ const deleteVideo = asyncHandler(async (req, res) => {
 const togglePublishStatus = asyncHandler(async (req, res) => {
     const { videoId } = req.params
 
-    const video = Video.findById(videoId)
+    const video = await Video.findById(videoId)
     if (!video) {
         throw new ApiError(400, "video does not exit")
     }

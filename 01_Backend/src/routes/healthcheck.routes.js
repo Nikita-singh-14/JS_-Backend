@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { jwtVerify } from "../middleware/auth.middleware";
-import { healthcheck } from "../controllers/healthcheck.controller";
+import { jwtVerify } from "../middleware/auth.middleware.js";
+import { healthcheck } from "../controllers/healthcheck.controller.js";
 
 const router = Router()
 

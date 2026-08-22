@@ -71,17 +71,17 @@ const registerUser = asyncHandler(async (req, res) => {
         fullName,
         avatar: avatar.url,
         //Me
-        avatarPublicId: avatar.public._id,
+        avatarPublicId: avatar.public?._id,
         //
         coverImage: coverImage?.url || '',
         //Me
-        coverImagePublicId: coverImage.public._id,
+        coverImagePublicId: coverImage.public?._id,
         //
         email,
         password,
         username: username.toLowerCase()
     });
-    const createdUser = await User.findById(user._id).select(
+    const createdUser = await User.findById(user?._id).select(
         "-password -refreshToken"
     )
 

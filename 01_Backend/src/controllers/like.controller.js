@@ -33,12 +33,15 @@ const toggelVideoLike = asyncHandler(async(req, res) => {
         .json(new ApiResponse(200, null, "Video unLike"))
     }
 
-    await Like.create({
+    const like = await Like.create({
         video: videoId,
         likedBy: req.user._id
     })
+    if(!like){
+        throw new ApiError(500, "something went wrong while liking the video")
+    }
 
-    return res.status(200).json(new ApiResponse(200, null, "video like successfully"))
+    return res.status(200).json(new ApiResponse(200, like, "video like successfully"))
 })
 
 const toggelCommentLike = asyncHandler(async(req, res) => {
@@ -67,12 +70,12 @@ const toggelCommentLike = asyncHandler(async(req, res) => {
         .json(new ApiResponse(200, null, "Comment unLike"))
     }
 
-    await Like.create({
+    const commentLike = await Like.create({
         comment: commentId,
         likedBy: req.user._id
     })
 
-    return res.status(200).json(new ApiResponse(200, null, "comment like successfully"))
+    return res.status(200).json(new ApiResponse(200, commentLike, "comment like successfully"))
 
 })
 
@@ -101,16 +104,16 @@ const toggelTweetLike = asyncHandler(async(req, res) => {
         .json(new ApiResponse(200, null, "Tweet unLike"))
     }
 
-    await Like.create({
+    const tweetLike = await Like.create({
         tweet: tweetId,
         likedBy: req.user._id
     })
 
-    return res.status(200).json(new ApiResponse(200, null, "Tweet like successfully"))
+    return res.status(200).json(new ApiResponse(200, tweetLike, "Tweet like successfully"))
 })
 
 const getLikedVideos = asyncHandler(async(req, res) => {
-    const likedVideo = Like.aggregate([
+    const likedVideo = await Like.aggregate([
         {
             $match:{
                 likedBy: new mongoose.Types.ObjectId(req.user._id),

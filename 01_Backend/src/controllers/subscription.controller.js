@@ -25,7 +25,7 @@ const toggleSubscription = asyncHandler(async (req, res) => {
         channel: channelId
     })
     return res.status(200)
-        .json(new ApiResponse(200, null, "Subscribe successfully"))
+        .json(new ApiResponse(200, subscription, "Subscribe successfully"))
 })
 
 // controller to return subscriber list of a channel

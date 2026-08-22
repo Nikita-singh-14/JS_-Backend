@@ -67,7 +67,7 @@ const addComment = asyncHandler(async(req, res) => {
         owner: req.user?._id
     })
 
-    return res.status.json(new ApiResponse(200, comment, "Add comment successfully"))
+    return res.status(200).json(new ApiResponse(200, comment, "Add comment successfully"))
 })
 
 const updateComment = asyncHandler(async(req, res) => {
@@ -80,12 +80,18 @@ const updateComment = asyncHandler(async(req, res) => {
     if(!mongoose.isValidObjectId(commentId)){
         throw new ApiError(404, "comment does not exit")
     }
-    if(!content || content.trim() === ''){
+    if(!content){
         throw new ApiError(400, "please write something to add comment")
     }
+    if(content.trim() === ''){
+        throw new ApiError(400, "content should not be empty")
+    }
 
-    const comment = await Comment.findByIdAndUpdate(
-        commentId,
+    const comment = await Comment.findOneAndUpdate(
+        {
+            _id: commentId,
+            owner: req.user?._id
+        },
         {
             $set: {
                 content: content.trim()
