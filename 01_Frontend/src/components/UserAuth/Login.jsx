@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from './Button'
+import Button from '../Button'
 
 const Login = () => {
   return (
@@ -21,7 +21,7 @@ const Login = () => {
     //         <Button text="sign-in"/>
     //     </form>
     // </div>
-    <div className="w-full max-w-md p-8 rounded-2xl bg-zinc-900 border border-zinc-700 shadow-2xl">
+    <div className="w-full max-w-md p-8 rounded-2xl bg-gray-800 border border-white shadow-2xl">
     <div className="mb-8">
         <h2 className="text-3xl font-bold text-white">
             Sign in to your account
@@ -45,7 +45,7 @@ const Login = () => {
                 name="email"
                 type="email"
                 placeholder="you@example.com"
-                className="w-full rounded-lg bg-zinc-800 border border-zinc-700 px-4 py-3 text-white placeholder-zinc-500 outline-none transition focus:border-white focus:ring-2 focus:ring-white/10"
+                className="w-full rounded-lg bg-gray-800 border border-white px-4 py-3 text-white placeholder-zinc-500 outline-none transition focus:border-white focus:ring-2 focus:ring-white/10"
             />
         </div>
 
