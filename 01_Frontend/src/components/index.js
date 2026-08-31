@@ -13,6 +13,9 @@ import Signup from "./UserAuth/Signup.jsx";
 import Terms from "./Support/Terms.jsx";
 import Footer from "./Footer/Footer.jsx";
 import VideoListing from "./Home/VideoListing.jsx";
+import VideoListView from "./Card/VideoListView.jsx";
+import VideoList from "./Home/VideoList.jsx";
+import ChannelTop from "./Channel/ChannelTop.jsx";
 
 export {
     Button,
@@ -29,5 +32,8 @@ export {
     Signup,
     Terms,
     Footer,
-    VideoListing
+    VideoListing,
+    VideoListView,
+    VideoList,
+    ChannelTop
 }

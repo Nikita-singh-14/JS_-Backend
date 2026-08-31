@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import VideoCard from '../Card/VideoCard'
+import VideoListView from '../Card/VideoListView'
 
-const VideoListing = () => {
+const VideoList = () => {
     const [videos, setVideos] = useState([])
-    const API_URL = import.meta.env.VITE_API_URL;
-
 
     useEffect(() => {
         const getVideo = async () => {
             try {
-                const response = await fetch(`${API_URL}/video/allVideos`)
+                const response = await fetch("http://localhost:3000/api/v1/video/allVideos")
                 if (!response.ok) {
                     console.log("ERROR: Failed to fetch video")
                 }
@@ -28,10 +26,10 @@ const VideoListing = () => {
 
     return (
         <div className="min-h-screen bg-gray-800 px-4 py-6">
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-8'>
+            <div className='grid grid-cols-1 gap-x-5 gap-y-8'>
             {videos.length > 0 ? (
                 videos.map((video) => (
-                    <VideoCard 
+                    <VideoListView
                         key={video._id} 
                         video={video}
                         description={video.description} 
@@ -51,4 +49,4 @@ const VideoListing = () => {
     )
 }
 
-export default VideoListing
+export default VideoList

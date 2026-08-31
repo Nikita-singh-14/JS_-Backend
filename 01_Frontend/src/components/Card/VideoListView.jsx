@@ -1,10 +1,12 @@
+import React from 'react'
 
-const VideoCard = ({
+const VideoListView = ({
     thumbnail,
     description,
     createdAt,
     views,
-    duration }) => {
+    duration
+}) => {
 
     const formatDuration = (seconds) => {
         const hours = Math.floor(seconds / 3600);
@@ -55,8 +57,9 @@ const VideoCard = ({
     };
 
     return (
-        <div className="group cursor-pointer hover:bg-gray-700 hover:rounded-2xl p-4">
-            <div className="relative w-full aspect-video overflow-hidden rounded-lg">
+        <div className="flex group cursor-pointer hover:bg-gray-700 hover:rounded-2xl p-4 gap-4">
+            <div className='flex-1'>
+            <div className="relative w-full max-w-150 aspect-video overflow-hidden rounded-lg">
                 <img
                     src={thumbnail}
                     alt={description}
@@ -66,7 +69,9 @@ const VideoCard = ({
                     {formatDuration(duration)}
                 </span>
             </div>
+            </div>
 
+            <div className='flex-3'>
             <div className="flex gap-3 mt-3">
                 <div className="shrink-0">
                     <div className="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center text-white font-semibold">
@@ -95,9 +100,11 @@ const VideoCard = ({
 
 
             </div>
+            </div>
 
         </div>
-    )
+
+  )
 }
 
-export default VideoCard
+export default VideoListView

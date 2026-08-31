@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 import Layout from './components/Layout.jsx'
-import { Home, Login, Signup, Terms,  VideoListing } from './components/index.js'
+import { ChannelTop, Home, Login, Signup, Terms,  VideoList,  VideoListing } from './components/index.js'
 
 let router = createBrowserRouter(
   createRoutesFromElements(
@@ -13,9 +13,10 @@ let router = createBrowserRouter(
       <Route path='signup' element={<Signup/>} />
       <Route path='termsandcondition' element={<Terms/>} />
       <Route path='videolisting' element={<VideoListing/>} />
-      {/* <Route path='subscribers' element={<About/>}/>
-      <Route path='my-content' element={<User/>}/>
-      <Route path='like-videos' element={<Contact/>}/> */}
+      <Route path='videolistview' element={<VideoList/>} />
+      
+      <Route path='channeltop' element={<ChannelTop/>}/>
+      {/* <Route path='like-videos' element={<Contact/>}/> */} 
     </Route>
   )
 )
