@@ -2,7 +2,8 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import {DB_NAME} from './constants.js';
 import connectDB from './src/db/index.js';
-import "dotenv/config";
+//01-sept 2026
+// import "dotenv/config";
 import app from './app.js'
 
 dotenv.config({
