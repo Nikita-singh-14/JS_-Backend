@@ -1,12 +1,17 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../Button'
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { CiSearch } from "react-icons/ci";
+import LogoutBtn from './LogoutBtn';
 
 const Header = () => {
     const { user, setUser } = useState(null)
+    // const authStatus = useSelector((state) => state.auth.status)
+    const navigate = useNavigate()
     return (
-        <div className='flex justify-between p-8 bg-gray-800 border border-white'>
+        <header className='flex justify-between p-8 bg-gray-800 border border-white'>
             <img src="https://alexharkness.com/wp-content/uploads/2020/06/logo-2.png" alt="logo"
             className='w-30' />
             <input type="Text"
@@ -21,15 +26,15 @@ const Header = () => {
                 ) : (
                     <div className='flex gap-4'>
                         <Link to='login'>
-                            <Button text='Log in' />
+                            <Button children='Log in' />
                         </Link>
                         <Link to='signup'>
-                            <Button text='Sign up' />
+                            <Button children='Sign up' />
                         </Link>
                     </div>
                 )}
             </div>
-        </div>
+        </header>
     )
 }
 

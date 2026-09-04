@@ -11,39 +11,49 @@ import { NavLink } from "react-router-dom";
 const NavOptions = [
     {
         icon:<MdHome />,
-        label:"Home"
+        label:"Home",
+        slug:"/",
+        active: true
     },
     {
         icon:<LuHistory />,
-        label:"History"
+        label:"History",
+        slug: "/history"
     },
     {
         icon:<IoIosVideocam />,
-        label:"My Content"
+        label:"My Content",
+        slug: 'mycontent'
     },
     {
         icon:<MdUnsubscribe/>,
-        label:"Subscribers"
+        label:"Subscribers",
+        slug:"subscribers"
     },
     {
         icon:<VscNewCollection />,
-        label:"Collection"
+        label:"Collection",
+        slug:"collection"
     },
     {
         icon:<AiFillLike />,
-        label:"Liked Videos"
+        label:"Liked Videos",
+        slug:"likedvideos"
     },
     {
         icon:<BiSupport />,
-        label:"Support"
+        label:"Support",
+        slug:"support"
     },
     {
         icon:<IoIosSettings />,
-        label:"Settings"
+        label:"Settings",
+        slug:"settings"
     }
 ]
 
 const Sidebar = () => {
+    
   return (
     <div className="flex flex-col gap-2 bg-gray-800 min-h-screen px-2 pt-8 border border-white">
         {

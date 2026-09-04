@@ -16,7 +16,8 @@ import VideoListing from "./Home/VideoListing.jsx";
 import VideoListView from "./Card/VideoListView.jsx";
 import VideoList from "./Home/VideoList.jsx";
 import ChannelTop from "./Channel/ChannelTop.jsx";
-
+import Container from "./container/Container.jsx";
+import LogoutBtn from "./Header/LogoutBtn.jsx";
 export {
     Button,
     Card,
@@ -35,5 +36,7 @@ export {
     VideoListing,
     VideoListView,
     VideoList,
-    ChannelTop
+    ChannelTop,
+    Container,
+    LogoutBtn
 }
