@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { login as authLogin } from '../../Store/features/authSlice'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import Logo from '../Logo'
@@ -186,7 +185,7 @@ const Signup = () => {
                             />
 
                             <div className="flex gap-3">
-                                {/* Back Button */}
+       
                                 <Button
                                     type="button"
                                     onClick={() => setStep(1)}
@@ -194,7 +193,6 @@ const Signup = () => {
                                     Back
                                 </Button>
 
-                                {/* Submit Button */}
                                 <Button
                                     type="submit"
                                     className="w-1/2 hover:bg-blue-600 border border-white" >

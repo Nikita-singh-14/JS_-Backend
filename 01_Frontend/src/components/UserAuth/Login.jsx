@@ -123,19 +123,27 @@ const Login = () => {
     const dispatch = useDispatch()
     const { register, handleSubmit } = useForm()
     const [error, setError] = useState('')
+    const API_URL = import.meta.env.VITE_API_URL
     const login = async (data) => {
         setError('')
-        // try {
-        //     const session = await 
-        //     // if (session) {
-        //     //     const userData = await login
-        //     //     if (userData) dispatch(authLogin(userData))
-        //     //     navigate('/')
-
-        //     // }
-        // } catch (error) {
-        //     setError(error.message)
-        // }
+        try {
+            const response = await fetch(`${API_URL}/user/login`, 
+                { method: 'POST', 
+                    headers: { 'Content-Type': 'application/json', }, 
+                    body: JSON.stringify({ email: data.email, password: data.password, }), 
+                }
+            )
+            const result = await response.json() 
+            if (!response.ok) { 
+                console.log(result.message || 'Login failed') 
+            } 
+            console.log('Login successful:', result)
+            dispatch(authLogin(result.data)) 
+            navigate('/')
+        } catch (error) {
+            console.error('Login Error:', error) 
+            setError(error.message || 'Something went wrong')
+        }
     }
     return (
         <div className='flex items-center justify-center w-full m-10'>
@@ -164,12 +172,7 @@ const Login = () => {
                             placeholder="Enter your email"
                             type='email'
                             {...register('email', {
-                                required: true,
-                                validate: {
-                                    matchPattern: (value) =>
-                                        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ||
-                                        "Email address must be a valid address",
-                                }
+                                required: 'Email is required',
                             })}
                         />
 
@@ -178,12 +181,13 @@ const Login = () => {
                             placeholder="Enter your password"
                             type='password'
                             {...register('password', {
-                                required: true,
-
+                                required: 'Password is required',
                             })}
                         />
 
-                        <Button className='w-full hover:bg-blue-600 border border-white'>Sign In</Button>
+                        <Button 
+                        type='submit'
+                        className='w-full hover:bg-blue-600 border border-white'>Sign In</Button>
                     </div>
                 </form>
             </div>
