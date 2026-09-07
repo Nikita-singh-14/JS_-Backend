@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 import Layout from './components/Layout.jsx'
 import './index.css'
-import { ChannelTop, Home, Login, Signup, Terms, UploadVideo, VideoList, VideoListing } from './components/index.js'
+import { Channel, Home, Login, Signup, Terms, UploadVideo, VideoList, VideoListing } from './components/index.js'
 import { Provider } from 'react-redux'
 import store from './Store/Store.js'
 let router = createBrowserRouter(
@@ -16,8 +16,8 @@ let router = createBrowserRouter(
       <Route path='videolisting' element={<VideoListing />} />
       <Route path='videolistview' element={<VideoList />} />
 
-      <Route path='channeltop' element={<ChannelTop />} />
       <Route path='uploadvideo' element={<UploadVideo/>}/>
+      <Route path='channel/:username' element={<Channel/>}/>
     </Route>
   )
 )

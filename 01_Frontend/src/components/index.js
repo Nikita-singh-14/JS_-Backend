@@ -15,10 +15,10 @@ import Footer from "./Footer/Footer.jsx";
 import VideoListing from "./Home/VideoListing.jsx";
 import VideoListView from "./Card/VideoListView.jsx";
 import VideoList from "./Home/VideoList.jsx";
-import ChannelTop from "./Channel/ChannelTop.jsx";
 import Container from "./container/Container.jsx";
 import LogoutBtn from "./Header/LogoutBtn.jsx";
 import UploadVideo from "./Channel/UploadVideo.jsx";
+import Channel from "./Channel/Channel.jsx";
 export {
     Button,
     Card,
@@ -37,8 +37,9 @@ export {
     VideoListing,
     VideoListView,
     VideoList,
-    ChannelTop,
+    Channel,
     Container,
     LogoutBtn,
     UploadVideo
+
 }

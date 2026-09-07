@@ -172,8 +172,8 @@ const UploadVideo = () => {
                   cursor-pointer
                   shadow-[6px_6px_0px_#555]
                   hover:bg-[#B47CFF]
-                  active:translate-x-[3px]
-                  active:translate-y-[3px]
+                  active:translate-x-0.75
+                  active:translate-y-0.75
                   active:shadow-[3px_3px_0px_#555]
                   transition-all
                 "
