@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static("public"))
 app.use(cookieParser());
 
-//routes imoort
+
 import userRouter from './src/routes/user.routes.js'
 import videoRouter from './src/routes/video.routes.js'
 import subscriptionRouter from './src/routes/subscription.routes.js'
@@ -25,7 +25,6 @@ import dashboardRouter from './src/routes/dashboard.routes.js'
 import healthcheckRouter from './src/routes/healthcheck.routes.js'
 
 
-//routes declaration
 app.use('/api/v1/healthcheck', healthcheckRouter)
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/video', videoRouter);

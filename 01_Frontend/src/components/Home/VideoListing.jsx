@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import VideoCard from '../Card/VideoCard'
+import { GoVideo } from "react-icons/go";
 
 const VideoListing = () => {
     const [videos, setVideos] = useState([])
@@ -29,23 +30,29 @@ const VideoListing = () => {
     return (
         <div className="min-h-screen bg-gray-800 px-4 py-6">
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-8'>
-            {videos.length > 0 ? (
-                videos.map((video) => (
-                    <VideoCard 
-                        key={video._id} 
-                        video={video}
-                        description={video.description} 
-                        thumbnail={video.thumbnail}
-                        duration={video.duration}
-                        createdAt={video.createdAt}
-                        veiws={video.veiws}
-                    />
-                ))
-            ) : (
-                <p className='text-white'>No videos found.</p>
-            )}
-        
-        </div>
+                {videos.length > 0 ? (
+                    videos.map((video) => (
+                        //TODO
+                        //when we click any video then it redirect to video details page
+                        <VideoCard
+                            key={video._id}
+                            video={video}
+                            description={video.description}
+                            thumbnail={video.thumbnail}
+                            duration={video.duration}
+                            createdAt={video.createdAt}
+                            veiws={video.veiws}
+                        />
+                    ))
+                ) : (
+                    <div className="flex flex-col w-full justify-center items-center bg-gray-800 min-h-screen text-white">
+                        <GoVideo />
+                        <h3>No Videos available</h3>
+                        <p>Please try to search some thing else.</p>
+                    </div>
+                )}
+
+            </div>
         </div>
 
     )

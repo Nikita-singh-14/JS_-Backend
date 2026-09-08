@@ -2,9 +2,10 @@ import Button from "./Button";
 import Card from "./Card";
 import Sidebar from './Sidebar/Sidebar.jsx';
 import Subscriber from './Subscribers/Subscriber.jsx';
-import MyContent from './MyContent/MyContent.jsx';
+import MyContent from '../pages/MyContent.jsx';
 import LikeVideos from './LikedVideos/LikeVideos.jsx';
-import Home from "./Home/Home.jsx";
+
+
 import History from './History/History.jsx';
 import Header from "./Header/Header.jsx";
 import Collections from './Collections/Collections.jsx'
@@ -26,7 +27,6 @@ export {
     Subscriber,
     MyContent,
     LikeVideos,
-    Home,
     History,
     Header,
     Collections,

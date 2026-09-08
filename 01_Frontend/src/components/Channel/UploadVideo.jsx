@@ -12,7 +12,6 @@ const UploadVideo = () => {
 
   const inputRef = useRef(null);
 
-  // Handle selected files
   const handleFiles = (files) => {
     const selectedFiles = Array.from(files);
 
@@ -31,7 +30,7 @@ const UploadVideo = () => {
     console.log("Selected video:", videoFiles[0]);
   };
 
-  // Drag & Drop
+
   const handleDrop = (e) => {
     e.preventDefault();
     setIsDragging(false);
@@ -41,14 +40,12 @@ const UploadVideo = () => {
     }
   };
 
-  // File input
   const handleFileChange = (e) => {
     if (e.target.files.length > 0) {
       handleFiles(e.target.files);
     }
   };
 
-  // Submit
   const onSubmit = (data) => {
     console.log("Form Data:", data);
     console.log("Video:", video);
@@ -58,7 +55,7 @@ const UploadVideo = () => {
     <div className="flex items-center justify-center w-full p-10">
       <div className="mx-auto w-full max-w-4xl bg-gray-800 rounded-xl p-8 border border-white/10 text-white">
 
-        {/* Header */}
+
         <div className="mb-5 flex items-center justify-between">
           <h2 className="text-2xl font-semibold">
             Upload Video

@@ -29,6 +29,8 @@ const VideoList = () => {
             <div className='grid grid-cols-1 gap-x-5 gap-y-8'>
             {videos.length > 0 ? (
                 videos.map((video) => (
+                    //TODO
+                    //when we click any video then it redirect to video details page
                     <VideoListView
                         key={video._id} 
                         video={video}

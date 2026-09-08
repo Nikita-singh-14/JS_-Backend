@@ -23,32 +23,32 @@ const NavOptions = [
     {
         icon:<IoIosVideocam />,
         label:"My Content",
-        slug: 'mycontent'
+        slug: '/mycontent'
     },
     {
         icon:<MdUnsubscribe/>,
         label:"Subscribers",
-        slug:"subscribers"
+        slug:"/subscribers"
     },
     {
         icon:<VscNewCollection />,
         label:"Collection",
-        slug:"collection"
+        slug:"/collection"
     },
     {
         icon:<AiFillLike />,
         label:"Liked Videos",
-        slug:"likedvideos"
+        slug:"/likedvideos"
     },
     {
         icon:<BiSupport />,
         label:"Support",
-        slug:"support"
+        slug:"/support"
     },
     {
         icon:<IoIosSettings />,
         label:"Settings",
-        slug:"settings"
+        slug:"/settings"
     }
 ]
 
@@ -61,6 +61,8 @@ const Sidebar = () => {
                 <NavLink key={idx} className=" text-xl flex items-center border border-white gap-2 rounded py-1 px-2 hover:bg-gray-600 text-white">
                     <span>{option.icon}</span>
                     <span>{option.label}</span>
+                    {/* //TODO
+                    //when we click any nav option then it redirect to that page */}
                 </NavLink>
             )
         }
