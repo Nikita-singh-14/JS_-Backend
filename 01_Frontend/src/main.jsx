@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import store from './Store/Store.js'
 import Home from './pages/Home.jsx'
 import MyContent from './pages/MyContent.jsx'
+import AuthInitializer from './AuthInitializer.jsx'
 let router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout />}>
@@ -28,7 +29,9 @@ let router = createBrowserRouter(
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
+      <AuthInitializer>
       <RouterProvider router={router} />
+      </AuthInitializer>
     </Provider>
   </StrictMode>,
 )

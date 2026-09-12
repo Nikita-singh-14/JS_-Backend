@@ -7,22 +7,35 @@ import { CiSearch } from "react-icons/ci";
 import LogoutBtn from './LogoutBtn';
 
 const Header = () => {
-    const { user, setUser } = useState(null)
-    // const authStatus = useSelector((state) => state.auth.status)
+    // const { user, setUser } = useState(null)
+    const authStatus = useSelector((state) => state.auth.status)
     const navigate = useNavigate()
+    const user = useSelector((state) => state.auth.userData);
+
+    console.log("Header user:", user);
     return (
         <header className='flex justify-between p-8 bg-gray-800 border border-white'>
             <img src="https://alexharkness.com/wp-content/uploads/2020/06/logo-2.png" alt="logo"
-            className='w-30' />
+                className='w-30' />
             <input type="Text"
-            className='border border-white-700 rounded px-3 py-1 w-[40%] outline-none text-white'
-            placeholder='Search...' 
+                className='border border-white-700 rounded px-3 py-1 w-[40%] outline-none text-white'
+                placeholder='Search...'
             />
             {/* //<CiSearch /> */}
-           
+
             <div>
                 {user ? (
-                    <div>{user.name.charAt(0).toUpperCase()}</div>
+                    user.avatar ? (
+                        <img
+                            src={user.avatar}
+                            alt="profile"
+                            className="w-10 h-10 rounded-full object-cover"
+                        />
+                    ) : (
+                        <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold">
+                            {user.fullName?.charAt(0).toUpperCase()}
+                        </div>
+                    )
                 ) : (
                     <div className='flex gap-4'>
                         <Link to='login'>
