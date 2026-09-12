@@ -9,6 +9,7 @@ import store from './Store/Store.js'
 import Home from './pages/Home.jsx'
 import MyContent from './pages/MyContent.jsx'
 import AuthInitializer from './AuthInitializer.jsx'
+import Profile from './components/Profile/Profile.jsx'
 let router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout />}>
@@ -22,6 +23,7 @@ let router = createBrowserRouter(
       <Route path='/mycontent' element={<MyContent/>}/>
       <Route path='uploadvideo' element={<UploadVideo/>}/>
       <Route path='channel/:username' element={<Channel/>}/>
+      <Route path="profile" element={<Profile />} />
     </Route>
   )
 )

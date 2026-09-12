@@ -1,18 +1,12 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../Button'
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { CiSearch } from "react-icons/ci";
-import LogoutBtn from './LogoutBtn';
+
+import UserProfile from './UserProfile';
 
 const Header = () => {
-    // const { user, setUser } = useState(null)
-    const authStatus = useSelector((state) => state.auth.status)
-    const navigate = useNavigate()
     const user = useSelector((state) => state.auth.userData);
 
-    console.log("Header user:", user);
     return (
         <header className='flex justify-between p-8 bg-gray-800 border border-white'>
             <img src="https://alexharkness.com/wp-content/uploads/2020/06/logo-2.png" alt="logo"
@@ -21,22 +15,9 @@ const Header = () => {
                 className='border border-white-700 rounded px-3 py-1 w-[40%] outline-none text-white'
                 placeholder='Search...'
             />
-            {/* //<CiSearch /> */}
 
             <div>
-                {user ? (
-                    user.avatar ? (
-                        <img
-                            src={user.avatar}
-                            alt="profile"
-                            className="w-10 h-10 rounded-full object-cover"
-                        />
-                    ) : (
-                        <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold">
-                            {user.fullName?.charAt(0).toUpperCase()}
-                        </div>
-                    )
-                ) : (
+                {user ? <UserProfile /> :(
                     <div className='flex gap-4'>
                         <Link to='login'>
                             <Button children='Log in' />
